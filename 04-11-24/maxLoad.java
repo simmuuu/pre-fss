@@ -65,3 +65,47 @@
 // After these operations, the package with the highest load has 8 items, 
 //     So the MaxLoad is 8.
 
+import java.util.*;
+
+public class maxLoad{
+    public static int getMaxLoad(int[] arr, int p){
+        int left = 1;
+        int right = Arrays.stream(arr).max().getAsInt();
+        int res = right;
+        while(left<=right){
+            int mid = (left+right)/2;
+            if(maxLoad(arr,p,mid)){
+                res = mid;
+                right = mid-1;
+            }
+            else{
+                left = mid+1;
+            }
+        }
+        return res;
+    }
+    public static boolean maxLoad(int[] arr, int p, int mid){
+        int splits = 0;
+        for(int i : arr){
+            if(i>mid){
+                int reqSplits = (i-1)/mid;
+                splits += reqSplits;
+                if(splits>p){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int p = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i = 0;i<n;i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.println(getMaxLoad(arr,p));
+        sc.close();
+    }
+}
