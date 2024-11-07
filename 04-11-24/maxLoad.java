@@ -74,7 +74,7 @@ public class maxLoad{
         int res = right;
         while(left<=right){
             int mid = (left+right)/2;
-            if(maxLoad(arr,p,mid)){
+            if(maxLoadFind(arr,p,mid)){
                 res = mid;
                 right = mid-1;
             }
@@ -84,7 +84,7 @@ public class maxLoad{
         }
         return res;
     }
-    public static boolean maxLoad(int[] arr, int p, int mid){
+    public static boolean maxLoadFind(int[] arr, int p, int mid){
         int splits = 0;
         for(int i : arr){
             if(i>mid){
