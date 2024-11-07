@@ -30,8 +30,6 @@ Person{name='Bob', age=34, location='Los Angeles'}
 
 import java.util.*;
 import java.util.stream.*;
-
-
 class Person{
     private int age;
     private String location;

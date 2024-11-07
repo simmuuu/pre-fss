@@ -29,8 +29,6 @@ Bob: 85, 60, 145
 
 import java.util.*;
 import java.util.stream.*;
-
-
 class Person{
     private int coding;
     private int mcq;
