@@ -29,11 +29,11 @@ Bob: 85, 60, 145
 
 import java.util.*;
 import java.util.stream.*;
-class Person{
+class PersonClass{
     private int coding;
     private int mcq;
     private String name;
-    Person(String name, int coding, int mcq){
+    PersonClass(String name, int coding, int mcq){
         this.name = name;
         this.coding = coding;
         this.mcq = mcq;
@@ -59,23 +59,23 @@ public class sort{
 		Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         sc.nextLine();
-        List<Person> persons = new ArrayList<>();
+        List<PersonClass> persons = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             String input = sc.nextLine();
             String[] parts = input.split(",");
             String name = parts[0];
             int coding = Integer.parseInt(parts[1]);
             int mcq = Integer.parseInt(parts[2].trim());
-            persons.add(new Person(name, coding,mcq));
+            persons.add(new PersonClass(name, coding,mcq));
         }
 
-        List<Person> res = persons.stream()
-            .sorted(Comparator.comparingInt(Person::getTotalScore).reversed()
-            .thenComparing(Comparator.comparingInt(Person::getCoding).reversed())
-            .thenComparing(Comparator.comparingInt(Person::getMcq).reversed()))
+        List<PersonClass> res = persons.stream()
+            .sorted(Comparator.comparingInt(PersonClass::getTotalScore).reversed()
+            .thenComparing(Comparator.comparingInt(PersonClass::getCoding).reversed())
+            .thenComparing(Comparator.comparingInt(PersonClass::getMcq).reversed()))
             .collect(Collectors.toList());
         
-        for(Person p : res){
+        for(PersonClass p : res){
             System.out.println(p);
         }
         sc.close();

@@ -30,11 +30,11 @@ Person{name='Bob', age=34, location='Los Angeles'}
 
 import java.util.*;
 import java.util.stream.*;
-class Person{
+class PersonClass2{
     private int age;
     private String location;
     private String name;
-    Person(String name, int age, String location){
+    PersonClass2(String name, int age, String location){
         this.name = name;
         this.age = age;
         this.location = location;
@@ -55,20 +55,20 @@ public class sortFilterGroup{
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         sc.nextLine();
-        List<Person> persons = new ArrayList<>();
+        List<PersonClass2> persons = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             String input = sc.nextLine();
             String[] parts = input.split(",");
             String name = parts[0];
             int age = Integer.parseInt(parts[1]);
             String location = parts[2];
-            persons.add(new Person(name, age, location));
+            persons.add(new PersonClass2(name, age, location));
         }
 
-        Map<String, List<Person>> res = persons.stream()
-        .sorted(Comparator.comparingInt(Person::getAge))
+        Map<String, List<PersonClass2>> res = persons.stream()
+        .sorted(Comparator.comparingInt(PersonClass2::getAge))
         .filter(person -> person.getAge() > 20)
-        .collect(Collectors.groupingBy(Person::getLocation));
+        .collect(Collectors.groupingBy(PersonClass2::getLocation));
 
         res.forEach((location, people) -> {
             System.out.println(location + " => ");
