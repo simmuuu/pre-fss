@@ -58,3 +58,44 @@
     // - "DOWN": moves to grid[1][0] (index 3).
     // - "LEFT": ignored (out of bounds).
     // - "RIGHT": moves to grid[1][1] (index 4).
+
+import java.util.*;
+public class robotPosition{
+    public static int getIndex(String[] commands, int n){
+        int row = 0;
+        int col = 0;
+        for(String s : commands){
+            switch(s){
+                case "UP":
+                    if(row>0){
+                        row-=1;
+                    }
+                    break;
+                case "DOWN":
+                    if(row<n-1){
+                        row+=1;
+                    }
+                    break;
+                case "LEFT":
+                    if(col>0){
+                        col-=1;
+                    }
+                    break;
+                case "RIGHT":
+                    if(col<n-1){
+                        col+=1;
+                    }
+                    break;
+            }
+        }
+        return (row*n)+col;
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        String[] commands = sc.nextLine().split(" ");
+        System.out.println(getIndex(commands,n));
+        sc.close();
+    }
+}

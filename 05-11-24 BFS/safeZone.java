@@ -40,3 +40,51 @@
 // 0 -1 3 4
 
 // NOTE: Please refer the hint.
+
+import java.util.*;
+public class safeZone{
+    public static void getSafeZones(int[][] grid, int m, int n){
+        int[] neighbourRow = {-1, 0, 1, 0};
+        int[] neighbourCol = {0, 1, 0, -1};
+        Queue<int[]> q = new LinkedList<>();
+        for(int i=0;i<m;++i){
+            for(int j=0;j<n;++j){
+                if(grid[i][j]==0){
+                    q.add(new int[]{i, j});
+                }
+            }
+        }
+        while(!q.isEmpty()){
+            int[] curr = q.poll();
+            int row = curr[0];
+            int col = curr[1];
+            for(int i=0;i<4;++i){
+                int newRow = row + neighbourRow[i];
+                int newCol = col + neighbourCol[i];
+                if(newRow>=0 && newRow<m && newCol>=0 && newCol<n && grid[newRow][newCol]==-2){
+                    grid[newRow][newCol] = grid[row][col]+1;
+                    q.add(new int[]{newRow, newCol});
+                }
+            }
+        }
+        for(int i=0;i<m;++i){
+            for(int j=0;j<n;++j){
+                System.out.print(grid[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+        int[][] grid = new int[m][n];
+        for(int i=0;i<m;++i){
+            for(int j=0;j<n;++j){
+                grid[i][j] = sc.nextInt();
+            }
+        }
+        getSafeZones(grid, m, n);
+        sc.close();
+    }
+}

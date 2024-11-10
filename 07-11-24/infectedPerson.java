@@ -85,16 +85,23 @@ public class infectedPerson{
             int[] top = queue.poll();
             int r = top[0];
             int c = top[1];
-
+            int currTime = top[2];
             for(int i = 0;i<4;i++){
                 int nr = r + neighbourRow[i];
                 int nc = c + neighbourCol[i];
                 if(nr>=0 && nr<n && nc>=0 && nc<m && grid[nr][nc] == 1){
                     grid[nr][nc] = 2;
-                    queue.add(new int[]{nr,nc});
+                    queue.add(new int[]{nr,nc,currTime+1});
+                    time = Math.max(time,currTime+1);
                 }
             }
-            time++;
+        }
+        for(int i = 0;i<n;i++){
+            for(int j = 0;j<m;j++){
+                if(grid[i][j] == 1){
+                    return -1;
+                }
+            }
         }
         return time;
     }
@@ -103,7 +110,7 @@ public class infectedPerson{
         for(int i = 0;i<n;i++){
             for(int j = 0;j<m;j++){
                 if(grid[i][j] == 2){
-                    queue.add(new int[]{i,j});
+                    queue.add(new int[]{i,j,0});
                     grid[i][j] = 0;
                 }
             }

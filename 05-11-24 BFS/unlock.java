@@ -61,3 +61,48 @@
 // ------------
 // You can't unlock the box.
 
+import java.util.*;
+
+public class unlock{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] trapCodes = sc.nextLine().split(" ");
+        String target = sc.nextLine();
+        Set<String> visited = new HashSet<>();
+        for(String s : trapCodes){
+            visited.add(s);
+        }
+        if (visited.contains("0000")) {
+            System.out.println(-1);
+            sc.close();
+            return;
+        }
+        Queue<String> q = new LinkedList<>();
+        q.add("0000");
+        int result = 0;
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int i=0;i<size;++i){
+                String curr = q.poll();
+                if(visited.contains(curr)) continue;
+                if(curr.equals(target)){
+                    System.out.println(result);
+                    sc.close();
+                    return;
+                }
+                visited.add(curr);
+                for(int j=0;j<4;++j){
+                    char[] arr = curr.toCharArray();
+                    char c = arr[j];
+                    arr[j] = (char)(((c-'0'+1)%10)+'0');
+                    q.add(new String(arr));
+                    arr[j] = (char)(((c-'0'+9)%10)+'0');
+                    q.add(new String(arr));
+                }
+            }
+            result++;
+        }
+        System.out.println(-1);
+        sc.close();
+    }
+}
