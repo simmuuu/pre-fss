@@ -1,3 +1,5 @@
 *.class
 *.pdf
 *.pptx
+*node_modules
+*.env
