@@ -69,3 +69,22 @@
 // NOTE:
 // =====
 // Please refer the sample outputs to generate the solution.
+
+import java.util.*;
+
+public class maxAllocation{
+    public static ArrayList<Integer> allocateIntegers(int n,ArrayList<Integer> arr){
+        if(n%2 != 0){
+            return new ArrayList<>();
+        }
+        // Complete it
+        return arr;
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        ArrayList<Integer> arr = new ArrayList<>();
+        System.out.println(allocateIntegers(n,arr));
+        sc.close();
+    }
+}
