@@ -73,18 +73,36 @@
 import java.util.*;
 
 public class maxAllocation{
-    public static ArrayList<Integer> allocateIntegers(int n,ArrayList<Integer> arr){
-        if(n%2 != 0){
+    public static void helper(List<Integer> res, List<Integer> arr, int currSum, int curr, int n){
+        if(currSum>n){
+            return;
+        }
+        if(currSum == n){
+            if(res.size()<arr.size()){
+                res.clear();
+                res.addAll(arr);
+            }
+            return;
+        }
+        for(int i = curr;i<=n-currSum;i++){
+            arr.add(i);
+            helper(res,arr,currSum+i,i+2,n);
+            arr.remove(arr.size()-1);
+        }
+    }
+    public static List<Integer> allocateIntegers(int n){
+        if(n%2!=0){
             return new ArrayList<>();
         }
-        // Complete it
-        return arr;
+        List<Integer> res = new ArrayList<>();
+        List<Integer> arr = new ArrayList<>();
+        helper(res,arr,0,2,n);
+        return res;
     }
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        ArrayList<Integer> arr = new ArrayList<>();
-        System.out.println(allocateIntegers(n,arr));
+        System.out.println(allocateIntegers(n));
         sc.close();
     }
 }
