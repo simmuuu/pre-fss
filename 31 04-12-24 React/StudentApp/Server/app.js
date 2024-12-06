@@ -12,7 +12,7 @@ app.use(cors());
 
 // Connect to MongoDB Atlas
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect("mongodb://localhost:27017/studentsDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

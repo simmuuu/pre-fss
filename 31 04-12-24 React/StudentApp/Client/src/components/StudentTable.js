@@ -8,7 +8,7 @@ const StudentsTable = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await axios.get("https://0f02-49-204-6-83.ngrok-free.app/allstudents", {
+      const response = await axios.get("http://10.10.6.112:4000/allstudents", {
         headers: {
           'ngrok-skip-browser-warning': true,
         },
@@ -39,7 +39,7 @@ const StudentsTable = () => {
   const handleSubmitClick = async (rollNo) => {
     try {
       const response = await axios.put(
-        `https://0f02-49-204-6-83.ngrok-free.app/student/${rollNo}`,
+        `http://10.10.6.112:4000/student/${rollNo}`,
         { scores: updatedScores },
         {
           headers: {
@@ -58,11 +58,12 @@ const StudentsTable = () => {
 
   const handleDelete = async (rollNo) => {
     try {
+      alert(`Are you sure you want to delete the student with Roll Number: ${rollNo}`);
       const response = await axios.delete(
-        `https://0f02-49-204-6-83.ngrok-free.app/student/${rollNo}`
+        `http://10.10.6.112:4000/student/${rollNo}`
       );
-      alert("Student deleted successfully");
-      fetchStudents();
+      alert(response.data.message);
+      await fetchStudents();
     } catch (error) {
       console.error("Error deleting student:", error);
       alert("Failed to delete student.");
@@ -126,6 +127,7 @@ const StudentsTable = () => {
               </td>
               <td>
                 <button
+                  id={`delete${student.rollNo}`}
                   className="btn btn-danger ml-2"
                   onClick={() => handleDelete(student.rollNo)}
                 >
