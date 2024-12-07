@@ -12,7 +12,7 @@ app.use(cors());
 
 // Connect to MongoDB Atlas
 mongoose
-  .connect("mongodb://localhost:27017/studentsDB", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -72,7 +72,7 @@ app.delete("/student/:rollNo", async (req, res) => {
   try {
     const deletedStudent = await Student.findOneAndDelete({ rollNo });
     if (deletedStudent) {
-      res.status(200).json({ message: "Student deleted successfully", deletedStudent });
+      res.status(200).json({ message: "Student(s) deleted successfully", deletedStudent });
     } else {
       res.status(404).json({ message: "Student not found" });
     }
