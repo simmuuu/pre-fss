@@ -12,7 +12,7 @@ app.use(cors());
 
 // Connect to MongoDB Atlas
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect("mongodb://127.0.0.1:27017/studentsDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -131,9 +131,9 @@ const reactAppPath = path.join(__dirname, "client/build");
 app.use(express.static(reactAppPath));
 
 // Catch-all route to serve React's index.html for unknown routes
-app.get("*", (req, res) => {
-  res.sendFile(path.join(reactAppPath, "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(reactAppPath, "index.html"));
+// });
 
 // Start the server
 const PORT = 4000;
