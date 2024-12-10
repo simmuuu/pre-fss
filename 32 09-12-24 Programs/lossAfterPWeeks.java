@@ -62,7 +62,7 @@
 
 import java.util.*;
 
-public class Solution{
+public class lossAfterPWeeks{
     public static int binarySearch(int[] arr){
         int low = 0;
         int high = arr.length-1;
