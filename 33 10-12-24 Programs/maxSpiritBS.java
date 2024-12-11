@@ -53,3 +53,47 @@
 // Sample Output-2:
 // ----------------
 // 5.66666
+
+import java.util.*;
+
+public class maxSpiritBS{
+    private static boolean isPossible(double[] bottles, int p, double target) {
+        double totalAdd = 0, totalRemove = 0;
+        double evaporationFactor = (100 - p) / 100.0;
+        for (double bottle : bottles) {
+            if (bottle > target) {
+                totalRemove += (bottle - target) * evaporationFactor;
+            } else {
+                totalAdd += target - bottle;
+            }
+        }
+        return totalRemove >= totalAdd;
+    }
+    public static double maxSpirit(double[] bottles,int p){
+        double low = 0;
+        double high = Arrays.stream(bottles).max().orElse(0);
+        double result = 0;
+        while (high - low > 1e-7) {
+            double mid = low + (high - low) / 2;
+            if (isPossible(bottles, p, mid)) {
+                result = mid;
+                low = mid;
+            } else {
+                high = mid;
+            }
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int p = sc.nextInt();
+        double[] bottles = new double[n];
+        for (int i = 0; i < n; i++) {
+            bottles[i] = sc.nextDouble();
+        }
+        double result = maxSpirit(bottles, p);
+        System.out.printf("%.5f\n", result);
+        sc.close();
+    }
+}
