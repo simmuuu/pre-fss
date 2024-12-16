@@ -8,7 +8,7 @@ const StudentsTable = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await axios.get("https://df15-49-204-6-83.ngrok-free.app/allstudents", {
+      const response = await axios.get("http://10.11.9.0:4000/allstudents", {
         headers: {
           'ngrok-skip-browser-warning': true,
         },
@@ -39,7 +39,7 @@ const StudentsTable = () => {
   const handleSubmitClick = async (rollNo) => {
     try {
       const response = await axios.put(
-        `https://df15-49-204-6-83.ngrok-free.app/student/${rollNo}`,
+        `http://10.11.9.0:4000/student/${rollNo}`,
         { scores: updatedScores },
         {
           headers: {
@@ -60,10 +60,9 @@ const StudentsTable = () => {
     try {
       alert(`Are you sure you want to delete the student with Roll Number: ${rollNo}`);
       const response = await axios.delete(
-        `https://df15-49-204-6-83.ngrok-free.app/student/${rollNo}`
+        `http://10.11.9.0:4000/student/${rollNo}`
       );
       alert(`Are you sure you want to delete the student with Roll Number: ${rollNo}?`);
-
       alert(response.data.message);
       await fetchStudents();
     } catch (error) {

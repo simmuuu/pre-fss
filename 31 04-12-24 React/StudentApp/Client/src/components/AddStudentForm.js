@@ -32,7 +32,7 @@ const AddStudentForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://df15-49-204-6-83.ngrok-free.app/student", student);
+      const response = await axios.post("http://10.11.9.0:4000/student", student);
       alert(response.data.message);
       setStudent({
         name: "",
