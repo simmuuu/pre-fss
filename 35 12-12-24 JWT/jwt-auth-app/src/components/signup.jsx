@@ -12,7 +12,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://e734-49-204-6-83.ngrok-free.app/auth/signup", formData);
+      const response = await axios.post("https://59b6-49-204-6-83.ngrok-free.app/auth/signup", formData);
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response?.data?.message || "Signup failed");
@@ -20,12 +20,12 @@ const Signup = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="text-center mb-4">Signup</h2>
-          <form onSubmit={handleSubmit} className="shadow p-4 rounded bg-light">
-            <div className="mb-3">
+          <h2 className="text-center">Signup</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
               <label>Name</label>
               <input
                 type="text"
@@ -36,7 +36,7 @@ const Signup = () => {
                 required
               />
             </div>
-            <div className="mb-3">
+            <div>
               <label>Email</label>
               <input
                 type="email"
@@ -47,7 +47,7 @@ const Signup = () => {
                 required
               />
             </div>
-            <div className="mb-3">
+            <div>
               <label>Password</label>
               <input
                 type="password"
