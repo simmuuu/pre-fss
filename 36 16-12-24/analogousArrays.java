@@ -55,3 +55,42 @@
 // There are 2 valid arrays:
 //     [1, 2, 4, 5]
 //     [2, 3, 5, 6]
+
+import java.util.*;
+
+public class analogousArrays{
+    public static int getAnalogousArrays(int[] secret, int n, int l, int u){
+        int count = 0;
+        OUTER:for(int i = l; i<=u;i++){
+            int elem = i;
+            for(int j = 0; j<secret.length;j++){
+                if(secret[j] < 0){
+                    if(elem + Math.abs(secret[j]) > u){
+                        continue OUTER;
+                    }
+                    elem += Math.abs(secret[j]);
+                }
+                else{
+                    if(elem - secret[j] < l){
+                        continue OUTER;
+                    }
+                    elem -= secret[j];
+                }
+            }
+            count++;
+        }
+        return count;
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int l = sc.nextInt();
+        int u = sc.nextInt();
+        int[] secret = new int[n];
+        for(int i = 0;i<n;i++){
+            secret[i] = sc.nextInt();
+        }
+        System.out.println(getAnalogousArrays(secret,n,l,u));
+        sc.close();
+    }
+}
