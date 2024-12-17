@@ -64,18 +64,10 @@ public class analogousArrays{
         OUTER:for(int i = l; i<=u;i++){
             int elem = i;
             for(int j = 0; j<secret.length;j++){
-                if(secret[j] < 0){
-                    if(elem + Math.abs(secret[j]) > u){
-                        continue OUTER;
-                    }
-                    elem += Math.abs(secret[j]);
+                if(elem - secret[j] > u || elem-secret[j] < l){
+                    continue OUTER;
                 }
-                else{
-                    if(elem - secret[j] < l){
-                        continue OUTER;
-                    }
-                    elem -= secret[j];
-                }
+                elem -= secret[j];
             }
             count++;
         }
