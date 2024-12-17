@@ -54,3 +54,37 @@
 // 3 teams of size 6 → 3×6=18 participants.
 // 1 teams of size 5 → 1×5=5 participants.
 // The total is: 18+5=23 (Total:23 participants,all accounted for).
+
+import java.util.*;
+
+public class assignParticipants{
+    public static int getTeams(int tp, int ta, int ts){
+        
+        int count = Integer.MAX_VALUE;
+        int maxTeam = Math.max(ta,ts);
+        int minTeam = Math.min(ta,ts);
+        for(int i = 0;i<=(tp/maxTeam);i++){
+            int sum = i*maxTeam;
+            if(sum > tp){
+                break;
+            }
+            int rem = tp-sum;
+            if(rem%minTeam == 0){
+                int remMinTeams = rem/minTeam;
+                count = Math.min(count,i+remMinTeams);
+            }
+        }
+        return count == Integer.MAX_VALUE ? -1 : count;
+        
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String[] inp = sc.nextLine().split(" ");
+        int tp = Integer.parseInt(inp[0]);
+        int ta = Integer.parseInt(inp[1]);
+        int ts = Integer.parseInt(inp[2]);
+        
+        System.out.println(getTeams(tp,ta,ts));
+        sc.close();
+    }
+}
