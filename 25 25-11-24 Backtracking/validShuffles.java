@@ -73,3 +73,31 @@
 // Integer at the 1st position (i=1) is 2, and 2 is divisible by i (i=1).
 // Integer at the 2nd position (i=2) is 1, and i is divisible by 1 (i=2).
 // Integer at the 3rd position (i=3) is 3, and 3 is divisible by i (i=3).
+
+import java.util.*;
+
+public class validShuffles{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] count = new int[1];
+        boolean[] visited = new boolean[n+1];
+        helper(n,1,visited,count);
+        System.out.println(count[0]);
+        sc.close();
+    }
+    
+    public static void helper(int n, int pos, boolean[] visited, int[] count){
+        if(pos>n){
+            count[0]++;
+            return;
+        }
+        for(int i=1;i<=n;++i){
+            if(!visited[i] && (i%pos==0 || pos%i==0)){
+                visited[i] = true;
+                helper(n,pos+1,visited,count);
+                visited[i] = false;
+            }
+        }
+    }
+}

@@ -55,3 +55,42 @@
 // relatives. So, the 0-th and 2-nd people are indirect relatives.
 // All of them in the same relative chain. So return 1.
 
+
+import java.util.*;
+
+public class relationChain {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] grid = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++)
+                grid[i][j] = sc.nextInt();
+        }
+        int result = getRelationChains(grid);
+        System.out.println(result);
+        sc.close();
+    }
+
+    public static int getRelationChains(int[][] grid) {
+        int n = grid.length;
+        int result = 0;
+        boolean[] visited = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                dfs(grid, i, visited);
+                result++;
+            }
+        }
+        return result;
+    }
+
+    private static void dfs(int[][] grid, int i, boolean[] visited) {
+        visited[i] = true;
+        for (int j = 0; j < grid.length; j++) {
+            if (grid[i][j] == 1 && !visited[j]) {
+                dfs(grid, j, visited);
+            }
+        }
+    }
+}

@@ -42,3 +42,31 @@
 // Sample Output-2:
 // ----------------
 // [ag, ah, ai, bg, bh, bi, cg, ch, ci]
+
+import java.util.*;
+
+public class letterCombinations{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        List<String> res = new ArrayList<>();
+        if(s.length()==0) System.out.println(res);
+        else{
+            String[] map = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+            helper(s,0,map,"",res);
+            System.out.println(res);
+        }
+        sc.close();
+    }
+    
+    public static void helper(String s, int index, String[] map, String curr, List<String> res){
+        if(index==s.length()){
+            res.add(curr);
+            return;
+        }
+        String letters = map[s.charAt(index)-'0'];
+        for(int i=0;i<letters.length();i++){
+            helper(s,index+1,map,curr+letters.charAt(i),res);
+        }
+    }
+}

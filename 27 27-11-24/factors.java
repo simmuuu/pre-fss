@@ -45,3 +45,32 @@ Sample Output-3:
 [[2, 2, 2, 2, 2], [2, 2, 2, 4], [2, 2, 8], [2, 4, 4], [2, 16], [4, 8]]
 
  */
+
+import java.util.*;
+
+public class factors {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        List<List<Integer>> res = new ArrayList<>();
+        helper(n, 2, new ArrayList<>(), res);
+        System.out.println(res);
+        sc.close();
+    }
+
+    public static void helper(int n, int start, List<Integer> list, List<List<Integer>> res) {
+        if (n == 1) {
+            if (list.size() > 1) {
+                res.add(new ArrayList<>(list));
+            }
+            return;
+        }
+        for (int i = start; i <= n; i++) {
+            if (n % i == 0) {
+                list.add(i);
+                helper(n / i, i, list, res);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
