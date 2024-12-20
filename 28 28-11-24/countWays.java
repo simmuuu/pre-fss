@@ -37,33 +37,26 @@
 
 import java.util.*;
 
-public class countWays {
-    public static void main(String[] args) {
+public class countWays{
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int f = sc.nextInt();
         int[] nums = new int[n];
-        for (int i = 0; i < n; i++) {
+        for(int i=0;i<n;++i){
             nums[i] = sc.nextInt();
         }
-        System.out.println(getWays(nums, f));
+        System.out.println(getCount(nums, f, 0, 0));
         sc.close();
     }
-
-    public static int getWays(int[] nums, int f) {
-        int n = nums.length;
-        int[][] dp = new int[n + 1][2001];
-        dp[0][1000] = 1;
-        for (int i = 1; i <= n; i++) {
-            for (int j = 0; j <= 2000; j++) {
-                if (j - nums[i - 1] >= 0) {
-                    dp[i][j] += dp[i - 1][j - nums[i - 1]];
-                }
-                if (j + nums[i - 1] <= 2000) {
-                    dp[i][j] += dp[i - 1][j + nums[i - 1]];
-                }
+    
+    public static int getCount(int[] nums, int f, int i, int total){
+        if(i==nums.length){
+            if(total==f){
+                return 1;
             }
+            return 0;
         }
-        return dp[n][f + 1000];
+        return getCount(nums, f, i+1, total+nums[i]) + getCount(nums, f, i+1, total-nums[i]);
     }
 }
