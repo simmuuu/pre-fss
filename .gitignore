@@ -1,6 +1,7 @@
 *.class
-*.pdf
+# *.pdf
 *.pptx
 *node_modules
 *.env
 PDFs
+Practice

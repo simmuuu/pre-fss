@@ -34,3 +34,29 @@
 // total = +1+1+1+1-1 = 3 -> total=value-F
 
 // NOTE: + means addition, - means subtraction
+
+import java.util.*;
+
+public class countWays{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int f = sc.nextInt();
+        int[] nums = new int[n];
+        for(int i=0;i<n;++i){
+            nums[i] = sc.nextInt();
+        }
+        System.out.println(getCount(nums, f, 0, 0));
+        sc.close();
+    }
+    
+    public static int getCount(int[] nums, int f, int i, int total){
+        if(i==nums.length){
+            if(total==f){
+                return 1;
+            }
+            return 0;
+        }
+        return getCount(nums, f, i+1, total+nums[i]) + getCount(nums, f, i+1, total-nums[i]);
+    }
+}

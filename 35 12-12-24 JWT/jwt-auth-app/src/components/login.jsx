@@ -14,7 +14,7 @@ const Login = ({ setIsAuthenticated, setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://e734-49-204-6-83.ngrok-free.app/auth/login", formData);
+      const response = await axios.post("https://59b6-49-204-6-83.ngrok-free.app/auth/login", formData);
 
       // Store JWT token in session storage
       sessionStorage.setItem("token", response.data.token);
@@ -37,8 +37,8 @@ const Login = ({ setIsAuthenticated, setUser }) => {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h2 className="text-center mb-4">Login</h2>
-          <form onSubmit={handleSubmit} className="shadow p-4 rounded bg-light">
-            <div className="mb-3">
+          <form onSubmit={handleSubmit}>
+            <div>
               <label>Email</label>
               <input
                 type="email"
@@ -49,7 +49,7 @@ const Login = ({ setIsAuthenticated, setUser }) => {
                 required
               />
             </div>
-            <div className="mb-3">
+            <div>
               <label>Password</label>
               <input
                 type="password"
@@ -60,7 +60,7 @@ const Login = ({ setIsAuthenticated, setUser }) => {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-primary w-100">Login</button>
+            <button type="submit" className="btn btn-primary">Login</button>
           </form>
           {message && <p className="mt-3 text-center">{message}</p>}
         </div>

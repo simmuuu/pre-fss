@@ -43,3 +43,29 @@
 // One of the way to divide the word is "m","i","s","si","ssi","p","pi".
 
 // NOTE: Subsequences are not allowed.
+
+
+import java.util.*;
+
+public class divideWord {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        int result = divWord(s);
+        System.out.println(result);
+        sc.close();
+    }
+
+    public static int divWord(String s) {
+        int n = s.length();
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                String sub = s.substring(i, j);
+                if (set.contains(sub)) break;
+                set.add(sub);
+            }
+        }
+        return set.size();
+    }
+}

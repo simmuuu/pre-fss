@@ -59,4 +59,37 @@ Sample Input-3:
 1
 */
 
+import java.util.*;
+
+public class roomsUnlock {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] keys = new int[n];
+        for (int i = 0; i < n; i++) {
+            keys[i] = sc.nextInt();
+        }
+        System.out.println(getMaxRooms(keys));
+        sc.close();
+    }
+
+    public static int getMaxRooms(int[] keys) {
+        int n = keys.length;
+        int[] visited = new int[n];
+        int result = 0;
+        for (int i = 0; i < n; i++) {
+            if (visited[i] == 0) {
+                Set<Integer> set = new HashSet<>();
+                int j = i;
+                while (visited[j] == 0 && !set.contains(j)) {
+                    set.add(j);
+                    visited[j] = 1;
+                    j = keys[j];
+                }
+                result = Math.max(result, set.size());
+            }
+        }
+        return result;
+    }
+}
 
